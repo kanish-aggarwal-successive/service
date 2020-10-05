@@ -1,5 +1,5 @@
-const config = require('./config/configuration');
-const Server = require('./Server');
+import config from './config/configuration';
+import Server from './Server';
 
 const server = new Server(config);
 server.bootstrap();

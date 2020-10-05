@@ -1,4 +1,5 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 
 class Server {
 
@@ -9,6 +10,7 @@ class Server {
 
     bootstrap = () => {
         this.setupRoutes();
+        this.initBodyParser();
         return this;
     }
 
@@ -27,6 +29,12 @@ class Server {
         });
         return this;
     }
+
+    initBodyParser = () => {
+        const { app } = this;
+        app.use(bodyParser.urlencoded({ extended: false}));
+        app.use(bodyParser.json());
+    }
 }
 
-module.exports = Server;
+export default Server;
