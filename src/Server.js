@@ -1,5 +1,7 @@
-const express = require('express');
-const bodyParser = require('body-parser');
+import express from 'express';
+import bodyParser from 'body-parser';
+
+import router from './router.js';
 
 class Server {
 
@@ -15,10 +17,9 @@ class Server {
     }
 
     setupRoutes = () => {
-        const { app } = this;
-        app.get('/health-check', (req, res) => {
-            res.send("I am OK");
-        });
+        // const { apiPrefix } = this.config;
+        // this.app.use(apiPrefix, router);
+        this.app.use('/api', router);
     }
 
     run = () => {
@@ -32,7 +33,7 @@ class Server {
 
     initBodyParser = () => {
         const { app } = this;
-        app.use(bodyParser.urlencoded({ extended: false}));
+        app.use(bodyParser.urlencoded({ extended: false }));
         app.use(bodyParser.json());
     }
 }

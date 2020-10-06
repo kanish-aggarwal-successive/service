@@ -1,7 +1,9 @@
-require('dotenv').config();
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const configurations = Object.freeze({
     port: process.env.PORT
 });
 
-module.exports = configurations;
+export default configurations;
