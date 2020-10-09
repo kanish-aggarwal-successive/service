@@ -15,10 +15,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-<<<<<<< HEAD
-    "express": "^4.17.1",
-    "mongodb": "^3.6.2"
-=======
     "babel-cli": "^6.26.0",
     "body-parser": "^1.19.0",
     "dotenv": "^8.2.0",
@@ -28,6 +24,5 @@
   "devDependencies": {
     "@babel/preset-react": "^7.10.4",
     "babel-preset-env": "^1.7.0"
->>>>>>> 6ad3642c73bc541f795f8f596805f3e076f68317
   }
 }
