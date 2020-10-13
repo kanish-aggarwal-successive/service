@@ -1,19 +1,31 @@
+import Book from './../../model.js'
+
+
 class Controller {
 
-    get = (req, res) => {
-        res.send('NOT IMPLEMENTED: Book detail: ' + req.params.id);
+    // To Get All Product
+
+    getBooks = async (req, res) => {
+        try {
+            const book = await Book.find({});
+            res.json({ books: book });
+        } catch (err) {
+            res.json({ error: 'Something went wrong' });
+        }
     }
 
-    create = (req, res) => {
-        res.send('NOT IMPLEMENTED: Book created');
-    }
 
-    update = (req, res) => {
-        res.send('NOT IMPLEMENTED: Book updated');
-    }
+    // Get Single Product
 
-    delete = (req, res) => {
-        res.send('NOT IMPLEMENTED: Book deleted');
+    getBookById = async (req, res) => {
+        const bookId = req.params.id;
+        const book = await Book.findById(bookId);
+
+        if (book) {
+            res.json({ book: book });
+        } else {
+            res.json({ message: 'Book not found' })
+        }
     }
 }
 

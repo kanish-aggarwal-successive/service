@@ -1,7 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 
-import router from './router.js';
+import router from './controllers/book/routes.js';
 
 class Server {
 
@@ -10,19 +10,19 @@ class Server {
         this.app = express();
     }
 
-    bootstrap = () => {
+    bootstrap () {
         this.setupRoutes();
         this.initBodyParser();
         return this;
     }
 
-    setupRoutes = () => {
+    setupRoutes () {
         // const { apiPrefix } = this.config;
         // this.app.use(apiPrefix, router);
         this.app.use('/api', router);
     }
 
-    run = () => {
+    run () {
         const { config: { port, env } } = this;
         this.app.listen(port, (err) => {
             if (err) throw err;
@@ -31,7 +31,7 @@ class Server {
         return this;
     }
 
-    initBodyParser = () => {
+    initBodyParser () {
         const { app } = this;
         app.use(bodyParser.urlencoded({ extended: false }));
         app.use(bodyParser.json());
