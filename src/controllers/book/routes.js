@@ -1,28 +1,14 @@
 import express from 'express';
+import bookController from './Controller.js'
+
+const bookControl = new bookController;
 
 const router = express.Router();
 
-router.route('/')
-    .get(function (req, res, next) {
-        res.json(req.book)
-    })
+router.route('/getBooks')
+    .get(bookControl.getBooks);
 
-router.route('/')
-    .put(function (req, res, next) {
-        
-        req.book.name = req.params.name
-        // save book 
-        res.json(req.book)
-    })
-
-router.route('/')
-    .post(function (req, res, next) {
-        next(new Error('not implemented'))
-    })
-
-router.route('/')
-    .delete(function (req, res, next) {
-        next(new Error('not implemented'))
-    })
+router.route('/getBook/:id')
+    .get(bookControl.getBookById);
 
 export default router;

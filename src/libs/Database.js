@@ -1,17 +1,19 @@
-import mongodb from 'mongodb';
+import mongoose from 'mongoose';
 
-const MongoClient = mongodb.MongoClient;
+import dotenv from 'dotenv';
+dotenv.config();
 
-const connectionURL = 'mongodb://localhost:27017/book-store'
+const connectDatabase = async () => {
+    const conn = await mongoose.connect(process.env.MONGO_URL, {
+        useNewUrlParser: true,
+        useCreateIndex: true,
+        useFindAndModify: false,
+        useUnifiedTopology: true
+    });
 
-const dbName = 'book-store'
+    console.log(`MongoDB Connected: ${conn.connection.host}`);
+};
 
-MongoClient.connect(connectionURL, { useUnifiedTopology: true }, (error, client) => {
-    if (error) {
-        return console.log("Unable to connect to database!");
-    }
 
-    console.log("Connected successfully")
+export default connectDatabase;
 
-    const db = client.db(dbName);
-});
