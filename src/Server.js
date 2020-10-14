@@ -11,22 +11,25 @@ class Server {
     }
 
     bootstrap () {
+        console.log("2----inside bootstrap")
         this.setupRoutes();
         this.initBodyParser();
         return this;
     }
 
     setupRoutes () {
-        // const { apiPrefix } = this.config;
-        // this.app.use(apiPrefix, router);
-        this.app.use('/api', router);
+        console.log("3--inside setuproutes-----")
+            this.app.use('/api', router);
     }
 
     run () {
+        console.log("4----inside bootstrap")
+
         const { config: { port, env } } = this;
+        // Define Routes
         this.app.listen(port, (err) => {
             if (err) throw err;
-            console.log(`App is running on `, { port }, { env });
+            console.log(`App is running on port :`, { port });
         });
         return this;
     }
