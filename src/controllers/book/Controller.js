@@ -22,11 +22,24 @@ class Controller {
         const book = await Book.findById(bookId);
 
         if (book) {
-            res.json({ book: book });
+            res.json(book);
         } else {
             res.json({ message: 'Book not found' })
         }
     }
+
+
+    // To update by Id
+
+    updateBookById = (req, res) => {     
+        Book.findOneAndUpdate({
+            id: req.body.id,
+            country: req.body.country
+        }).then(book => {
+            res.json(book)
+        });
+    }
+
 }
 
 export default Controller;

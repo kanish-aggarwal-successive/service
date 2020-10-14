@@ -11,4 +11,7 @@ router.route('/getBooks')
 router.route('/getBook/:id')
     .get(bookControl.getBookById);
 
+router.route('/edit/:id')
+    .put(bookControl.updateBookById);
+
 export default router;
