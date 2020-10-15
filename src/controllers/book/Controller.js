@@ -31,7 +31,7 @@ class Controller {
 
     // To update by Id
 
-    updateBookById = (req, res) => {     
+    updateBookById = (req, res) => {   
         Book.findOneAndUpdate({
             id: req.body.id,
             country: req.body.country
