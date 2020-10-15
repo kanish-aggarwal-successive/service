@@ -10,7 +10,8 @@ router.route('/getBooks')
     .post(bookControl.addBook);
 
 router.route('/getBook/:id')
-    .get(bookControl.getBookById);
+    .get(bookControl.getBookById)
+    .delete(bookControl.deleteBook);
 
 router.route('/edit/:id')
     .put(bookControl.updateBookById);
