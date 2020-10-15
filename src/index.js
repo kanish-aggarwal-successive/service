@@ -5,9 +5,6 @@ import fs from 'fs';
 
 import Book from './model.js';
 
-// import express from 'express';
-// const app = express();
-
 // Connect To Database
 db().then();
 
@@ -28,18 +25,6 @@ const importData = async () => {
         console.log(err);
     }
 }
-
-// app.put('/getBook/:id', async (req, res) => {
-//     try {
-//         const book = await Book.findByIdAndUpdate(req.params.id, req.body, {new: true, runValidators: true})
-//         if (!book) {
-//             return res.status(404).send();
-//         }
-//         res.send(book);
-//     } catch(e) {
-//         res.status(400).send(e)
-//     }
-// });
 
 // To import Data
 importData();
