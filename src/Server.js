@@ -23,7 +23,7 @@ class Server {
     }
 
     run () {
-        console.log("4----inside bootstrap")
+        console.log("4----inside run")
 
         const { config: { port, env } } = this;
         // Define Routes
