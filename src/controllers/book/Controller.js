@@ -31,23 +31,21 @@ class Controller {
 
     // To update by Id
 
-    // updateBookById = (req, res) => {   
-    //     Book.findOneAndUpdate({
-    //         id: req.body.id,
-    //         country: req.body.country
-    //     }).then(book => {
-    //         res.json(book)
-    //     });
-    // }
-
     updateBookById = async (req, res) => {
-        const book = await Book.findOneAndUpdate(req.body);
-
-        if (book) {
-            res.json(book)
-        } else {
-            res.json({ message: 'Book not found' })
+        const book = {
+            author: req.body.author,
+            country: req.body.country,
+            language: req.body.language,
+            pages: req.body.pages,
+            title: req.body.title,
+            year: req.body.year
         }
+
+        Book.findByIdAndUpdate(req.params.id, book)
+            .then(updatedBook => {
+                res.json(updatedBook.toJSON())
+            })
+            .catch(error => console.log(error))
     }
 
 
