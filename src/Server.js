@@ -17,16 +17,15 @@ class Server {
     }
 
     setupRoutes () {
-        // const { apiPrefix } = this.config;
-        // this.app.use(apiPrefix, router);
-        this.app.use('/api', router);
+            this.app.use('/api', router);
     }
 
     run () {
         const { config: { port, env } } = this;
+        // Define Routes
         this.app.listen(port, (err) => {
             if (err) throw err;
-            console.log(`App is running on `, { port }, { env });
+            console.log(`App is running on port :`, { port });
         });
         return this;
     }

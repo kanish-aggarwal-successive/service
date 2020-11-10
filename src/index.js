@@ -1,16 +1,10 @@
 import config from './config/configuration.js';
 import Server from './Server.js';
-import db from './libs/Database.js';
-import fs from 'fs';
-
-import Book from './model.js';
+import connectDatabase from './libs/Database.js';
+import {importData} from './libs/seedData.js';
 
 // Connect To Database
-db().then();
-
-const booksBuffer = fs.readFileSync('src/_seedData/books.json');
-const booksJSON = booksBuffer.toString();
-const booksData = JSON.parse(booksJSON);
+connectDatabase();
 
 const server = new Server(config);
 server.bootstrap();
