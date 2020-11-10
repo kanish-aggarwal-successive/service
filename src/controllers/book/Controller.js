@@ -22,11 +22,82 @@ class Controller {
         const book = await Book.findById(bookId);
 
         if (book) {
-            res.json({ book: book });
+            res.json(book);
         } else {
             res.json({ message: 'Book not found' })
         }
     }
+
+
+    // To update by Id
+
+    updateBookById = async (req, res) => {
+        const book = {
+            author: req.body.author,
+            country: req.body.country,
+            language: req.body.language,
+            pages: req.body.pages,
+            title: req.body.title,
+            year: req.body.year
+        }
+
+        Book.findByIdAndUpdate(req.params.id, book)
+            .then(updatedBook => {
+                res.json(updatedBook.toJSON())
+            })
+            .catch(error => console.log(error))
+    }
+
+
+    // To create a book
+
+    addBook = async (req, res) => {
+
+        // Request Validation
+        if (!req.body) {
+            return res.status(400).send({
+                message: "Book content cannot be empty"
+            });
+        }
+
+        const book = await Book.create(req.body);
+
+        // Save book
+        book.save()
+            .then(data => {
+                res.send(data);
+            }).catch(err => {
+                res.status(500).send({
+                    message: err.message || "Something wrong while creating the book."
+                });
+            });
+    }
+
+
+    // To delete a book
+
+    deleteBook = (req, res) => {
+
+        Book.findByIdAndDelete(req.params.id)
+            .then(data => {
+                if (!data) {
+                    return res.status(404).send({
+                        message: "user not found with id " + req.params.id
+                    });
+                }
+                res.send({ message: "Book deleted successfully!" });
+            }).catch(err => {
+                if (err.kind === 'ObjectId' || err.name === 'NotFound') {
+                    return res.status(404).send({
+                        message: "user not found with id " + req.params.id
+                    });
+                }
+                return res.status(500).send({
+                    message: "Could not delete book with id " + req.params.id
+                });
+            });
+    }
+
 }
 
 export default Controller;
